@@ -19,7 +19,7 @@
 
 
 ## Words i've written
-* [Taste is for the bold]([https://medium.com/growthhacker-insider/how-we-redesigned-wegreenlight-com-ecf6554734b8)
+* [Taste is for the bold](https://medium.com/growthhacker-insider/taste-is-for-the-bold-72df9724273f)
 * [How we redesigned WeGreenlight.com](https://medium.com/growthhacker-insider/how-we-redesigned-wegreenlight-com-ecf6554734b8)
 * [I was an early thought leader in Millennial Recruiting](https://medium.com/growthhacker-insider/how-to-build-a-loyal-millennial-team-7b5adf6d6adcps)
 * [Raw story about my journey into entrepreneurship](https://medium.com/growthhacker-insider/salinatechstars-f41c1313699)
