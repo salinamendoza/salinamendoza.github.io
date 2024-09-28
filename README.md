@@ -1,9 +1,14 @@
 # [Salina Mendoza ](https://www.linkedin.com/in/salinamendoza/)
 ## Product Leader, Culture Catalyst, Brand Innovator
-### I think in systems, understand the psychology of marketing + sales, and take extreme ownership
+### I think in systems, understand psychology of marketing + sales, build products that drive revenue, and take extreme ownership
 
 * Industry agnostic, innovated 0-1 from early stage (pre-seed to series D) to consulting to legacy
-* Led pivot of an software & ai firm into an all-in-one HR platform during covid in 2 mos
+* Led pivot of an software & ai firm into an all-in-one HR platform during covid in 2 mos (now 1K+ customers)
+* I convert high-value, at-risk clients into raving fans (Turned hotlist clients into 1st adopters of new products at Paciolan)
+* Restructured seating price models to maximize profit in high-demand scenarios ([Texas A&M sees $6.5M in incremental profit from special events](https://www.sportsbusinessjournal.com/Articles/2024/08/14/texas-am-events))
+* Grew take rate on new consumer platform from $100k lifetime revenue (9 mos) to $200k on a single event through a new innovation with sectional seat maps
+* Redesigned and grew a consumer market research platform from 15k to 125k with less than $2k
+* Built and executed a global version of the Suzy.com enterprise platform for a DIY/self-service experience in 2 months
 * Grew from d2d sales to leading all of talent acquisition & brand management for Gen110 in my early 20s (pioneer of solar utilities)
 * Worked in experiential brand marketing with Vitaminwater (highest beverage sold in LA @ time) 
 * Studied Business Entrepreneurship at Chapman University
@@ -13,6 +18,7 @@
 
 
 ## Words i've written
+* [Taste is for the bold]([https://medium.com/growthhacker-insider/how-we-redesigned-wegreenlight-com-ecf6554734b8](https://medium.com/growthhacker-insider/taste-is-for-the-bold-72df9724273f)
 * [How we redesigned WeGreenlight.com](https://medium.com/growthhacker-insider/how-we-redesigned-wegreenlight-com-ecf6554734b8)
 * [I was an early thought leader in Millennial Recruiting](https://medium.com/growthhacker-insider/how-to-build-a-loyal-millennial-team-7b5adf6d6adcps)
 * [Raw story about my journey into entrepreneurship](https://medium.com/growthhacker-insider/salinatechstars-f41c1313699)
