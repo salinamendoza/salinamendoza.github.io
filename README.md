@@ -3,6 +3,7 @@
 ### I think in systems, understand psychology of marketing + sales, build products that drive revenue, and take extreme ownership
 
 * Industry agnostic, innovated 0-1 from early stage (pre-seed to series D) to consulting to legacy
+* Most recently: Led product for vertical SaaS platform managing 1.2k+ self-storage facility websites, driving SEO optimization, ADA compliance, and consumer experience across white-label properties
 * Improved ADA compliance from 11% to 93% in 7-day sprint across 1k+ facility websites through strategic prioritization and cross-functional execution
 * Led schema architecture overhaul integrating real-time pricing/availability API for AI optimization across 1k+ sites, fixing 7-year-old entity structure preventing accurate multi-location indexing
 * Led consumer experience redesign transforming 4-page online rental flow into streamlined 2-step process with simplified user paths for reservations and rentals
