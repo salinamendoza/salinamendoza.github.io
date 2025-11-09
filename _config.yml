@@ -1,0 +1,9 @@
+title: Salina Mendoza
+description: PM building things
+url: "https://salinamendoza.github.io"
+
+# Jekyll theme (optional, you can skip this if you want to keep your existing styling)
+theme: minima
+
+# Markdown settings
+markdown: kramdown
