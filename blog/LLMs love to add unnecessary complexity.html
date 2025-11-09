@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LLMs love to add unnecessary complexity</title>
+</head>
+<body>
+    <h1>LLMs love to add unnecessary complexity</h1>
+    <p><em>11/09/2025</em></p>
+    
+    <p>TLDR: Don&#39;t trust LLMs blindly. They love creating unnecessary complexity (new paths, useEffect everywhere). Set temperature=0 for consistent parsing, normalize your date formats early, and always verify production implementations match your tests.</p>
+<ol>
+<li>LLMs love to make new paths without considering existing paths.   <ol>
+<li>Solution: Babysit the suggestions and recommendations. Do not blindly accept or allow changes until you’ve fully understood the next steps. Question their thought process and challenge them to simplify. Harder to undo later if the changes aren’t easy to restore (modifying files, deleting, updating auth paths, etc)   </li>
+</ol>
+</li>
+<li>Tests &amp; experiments can be implemented differently in production &amp; produce different results (incorrect).   <ol>
+<li>Make sure when integrating experiments that you instruct the LLMs to follow the exact same methods with the same files, permissions, models, and weights.   </li>
+</ol>
+</li>
+<li>When using LLMs, you want to eliminate any noise going into parsing, validating, etc. So it can be cheaper, more efficient, and have higher accuracy.   </li>
+<li>LLMs love useEffect in react as 1st recommendations. Fight back by questioning the necessity of new effect state changes. Push for smaller, one-line code changes when possible.   </li>
+<li>Adding parsing logic without a learning system will result in more random generations from the same sample dataset.   <ol>
+<li>The problem? No temperature control in AI call   <ol>
+<li>Uses default temperature setting which introduces randomness  </li>
+<li>Each parse \= slightly different interpretations  </li>
+<li>If cached \= empty → every parse hits AI fresh  </li>
+</ol>
+</li>
+<li>Solution(s)?  <ol>
+<li>Deterministic Parsing → add temperature of 0 to AI call for consistency   </li>
+<li>Few-shot learning with examples → build database of “gold standard” examples and inject them in system prompt, store user-corrected parsing results in a parsing_examples table, when parsing fetch 2-3 similar examples and add to prompt, AI learns from these examples without formal training (can’t train gemini)  </li>
+<li>Feedback loop → create a system where users can mark parsing results as “good” or “bad”, users can correct parsed data, store corrections in a parsing_feedback table, use the best examples as few-shot prompts for future parses  </li>
+<li>Prompt evolution → periodically analyze failed/corrected parses to refine the system prompt itself  </li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Date display can be easy or complicated, its your choice. Make sure there is consistency across your experience for the display logic and what is accepted in your database schema. Do not assume they align just because you add support for it. Be specific about date formatting (display &amp; inputs).   <ol>
+<li>EX: Start/end date formats vary:  <ol>
+<li>YYYY  </li>
+<li>YYYY-MM  </li>
+<li>YYYY-MM-DD  </li>
+<li>Present  </li>
+</ol>
+</li>
+<li>Solution? Add single, robust data normalizer to standardize dates:  <ol>
+<li>YYYY-MM-DD (keep as is)  </li>
+<li>YYYY-MM → append “-01”  </li>
+<li>YYYY → append “-01-01”  </li>
+<li>Present or empty → NULL   </li>
+<li>Anything else → NULL </li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+    
+    <p><a href="index.html">Back to Blog</a></p>
+</body>
+</html>
