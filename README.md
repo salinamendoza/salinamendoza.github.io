@@ -24,7 +24,7 @@
 * I build because I’m driven to ask, why not? 
 
 
-## Words i've written
+## Words i've written [(Read my blog here)](https://salinamendoza.github.io/blog/)
 * [Taste is for the bold](https://medium.com/growthhacker-insider/taste-is-for-the-bold-72df9724273f)
 * [How we redesigned WeGreenlight.com](https://medium.com/growthhacker-insider/how-we-redesigned-wegreenlight-com-ecf6554734b8)
 * [I was an early thought leader in Millennial Recruiting](https://medium.com/growthhacker-insider/how-to-build-a-loyal-millennial-team-7b5adf6d6adcps)
