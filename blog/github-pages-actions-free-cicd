@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub Pages + Actions = free CI/CD</title>
+    <meta name="description" content="GitHub Actions automates sitemap updates and Google indexing for free">
+    <meta name="author" content="Salina Mendoza">
+</head>
+<body>
+    <h1>GitHub Pages + Actions = free CI/CD</h1>
+    <p><em>11/11/2025</em></p>
+    
+    <p>TLDR: I built a mini CI/CD pipeline for my blog, GitHub pages make it easy to verify ownership than a regular domain by simplifying adding an HTML file to your repo, GitHub actions are like a built in zapier for more things than you can imagine, and usually there are already scripts for something you need if you ask Claude.</p>
+<p>When creating sites on builders like GitHub pages, you will need to add your own index.html and sitemap.xml files.</p>
+<ul>
+<li>Create a sitemap.xml \= lists all pages so Google knows what to index   </li>
+<li>Setup GitHub actions workflow   </li>
+<li>Add Google Search Console  \= verifies site ownership so you can submit sitemaps + track indexing   </li>
+<li>Create auto-update + ping system \= regenerates sitemap &amp; notifies Google automatically</li>
+</ul>
+<p><strong>How it works:</strong></p>
+<ol>
+<li>Add new HTML file to /blog folder (like this → blog/new-post.html)  </li>
+<li>Update blog/index.html file to add the new link   </li>
+<li>Commit/push to GitHub  </li>
+<li>Github action triggers automatically (changed in /blog)  </li>
+<li>Action scans your /blog folder for all html files   </li>
+<li>Action regenerates sitemap.xml with all blog posts  </li>
+<li>Action commits the updated sitemap  </li>
+<li>Action pings Google “Hey, sitemap is updated, come index!”  </li>
+<li>Google crawls site within 24/48 hrs</li>
+</ol>
+<p><strong>My workflow</strong></p>
+<ol>
+<li>Take physical notes   </li>
+<li>Write blog post (conversion process done from markdown to html*)  </li>
+<li>Update blog index file   </li>
+<li>Commit/push to github → live and new sitemap submitted to Google </li>
+</ol>
+<p><strong>Conversion from raw notes to blog</strong><br><em>The italicized steps will be automated next and consolidated in my next update</em></p>
+<ol>
+<li>Write out written notes in Google Doc file   </li>
+<li><em>Save/export as .md (markdown)</em>   </li>
+<li><em>Open .md to see/edit (i’m a micromanager of my processes)</em>  </li>
+<li>Copy html &amp; add new html file to blog folder in Github</li>
+</ol>
+<p><strong>What happens when something breaks?</strong><br>Glad you asked…it&#39;s simple. </p>
+<ol>
+<li>Check “Actions” tab in my GitHub repo  </li>
+<li>Look for error messages</li>
+</ol>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+    
+    <p><a href="index.html">Back to Blog</a></p>
+</body>
+</html>
