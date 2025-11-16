@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Understanding Apex Domains (foodtruckgamers.com edition)</title>
+    <meta name="description" content="Set up apex domains correctly with Cloudflare to avoid duplicate URLs tanking your SEO and Google Business Profile">
+    <meta name="author" content="Salina Mendoza">
+</head>
+<body>
+    <h1>Understanding Apex Domains (foodtruckgamers.com edition)</h1>
+    <p><em>11/11/2025</em></p>
+    
+<p>TLDR: Apex domain = your domain without &quot;www&quot; (foodtruckgamers.com). Pick ONE version (apex OR www) as your &quot;real&quot; URL and redirect the other. This avoids duplicate content issues in Google. Cloudflare makes setup easy with CNAME flattening + page rules.</p>
+<p>What is an apex domain?<br>Apex domain: foodtruckgamers.com<br>Subdomains: www.foodtruckgamers.com, blog.foodtruckgamers.com, <a href="http://api.foodtruckgamers.com">api.foodtruckgamers.com</a></p>
+<p>The apex = your domain without any prefix.</p>
+<p>The three setups (and why you should pick one)<br>Same DNS for all three:</p>
+<ul>
+<li>CNAME | @ | cname.lovable.app | Proxied: Yes  </li>
+<li>CNAME | www | cname.lovable.app | Proxied: Yes</li>
+</ul>
+<p>The difference is what happens after:<br>Setup 1: Both work (no redirect) 🤨</p>
+<ul>
+<li>foodtruckgamers.com → works  </li>
+<li>www.foodtruckgamers.com → works  </li>
+<li>No page rule needed  </li>
+<li>Problem: Google sees these as TWO different URLs with the same content \= duplicate content (bad for SEO)  </li>
+<li><strong>Don&#39;t do this unless: You literally don&#39;t care about SEO</strong></li>
+</ul>
+<p>Setup 2: Force www (traditional) 😐</p>
+<ul>
+<li>foodtruckgamers.com → redirects to → www.foodtruckgamers.com  </li>
+<li>Page rule: foodtruckgamers.com/* → <a href="https://www.foodtruckgamers.com/$1">https://www.foodtruckgamers.com/$1</a>  </li>
+<li>Why: Traditional, enterprise feel. Google only sees www.foodtruckgamers.com  </li>
+<li>Best for: Established businesses</li>
+</ul>
+<p>Setup 3: Force apex (modern) 😍</p>
+<ul>
+<li>www.foodtruckgamers.com → redirects to → foodtruckgamers.com  </li>
+<li>Page rule: www.foodtruckgamers.com/* → <a href="https://foodtruckgamers.com/$1">https://foodtruckgamers.com/$1</a>  </li>
+<li>Why: Cleaner URLs, modern, easier to say. Google only sees foodtruckgamers.com  </li>
+<li>Best for: Startups, modern brands</li>
+</ul>
+<p>The key: Pick ONE version. That&#39;s your canonical URL (the &quot;real&quot; one Google indexes). Redirect the other.</p>
+<p>Why duplicate URLs actually matter (it&#39;s worse than you think)<br>The SEO problem:</p>
+<ul>
+<li>Google indexes BOTH foodtruckgamers.com and www.foodtruckgamers.com as separate pages  </li>
+<li>Your site&#39;s &quot;authority&quot; gets split between two URLs  </li>
+<li>Google might rank the &quot;wrong&quot; version  </li>
+<li>Your backlinks get diluted across both versions</li>
+</ul>
+<p>The geolocation disaster: If your site has location data (address, phone, hours), duplicate URLs can create:</p>
+<ul>
+<li>Duplicate map listings on Google Maps and Bing Maps  </li>
+<li>Multiple Google Business Profiles for the same location  </li>
+<li>Split reviews across different listings  </li>
+<li>Confused customers who can&#39;t find your &quot;real&quot; listing</li>
+</ul>
+<p>Real-world example: You spend months getting 50 five-star reviews on your Google Business Profile linked to foodtruckgamers.com. Then Google creates a second listing for www.foodtruckgamers.com with 0 reviews. Now customers see the empty listing and think you&#39;re new/unreviewed.</p>
+<p>The review investment problem:</p>
+<ul>
+<li>Reviews are expensive to earn (time, follow-ups, customer service)  </li>
+<li>Duplicate listings split your reviews across multiple profiles  </li>
+<li>Lower review count = lower trust = fewer customers  </li>
+<li>Fixing duplicate listings is a PAIN (Google support, verification, merging)  </li>
+</ul>
+<p>Solution: Pick ONE canonical URL from the start. </p>
+<p>Setting up foodtruckgamers.com on Lovable</p>
+<ol>
+<li>Add domain to Cloudflare → point nameservers  </li>
+<li>Add DNS records:  <ul>
+<li>CNAME | @ | cname.lovable.app | Proxied  </li>
+<li>CNAME | www | cname.lovable.app | Proxied  </li>
+</ul>
+</li>
+<li>Choose redirect strategy:  <ul>
+<li>Want www? Page rule: foodtruckgamers.com/* → www.foodtruckgamers.com/$1  </li>
+<li>Want apex? Page rule: www.foodtruckgamers.com/* → foodtruckgamers.com/$1  </li>
+<li>Want both? Don&#39;t do this. Pick one.   </li>
+</ul>
+</li>
+<li>Verify:  <ul>
+<li>Visit both URLs  </li>
+<li>Check SSL (https://)  </li>
+<li>Confirm redirect works</li>
+</ul>
+</li>
+</ol>
+<p>Pro tips</p>
+<ol>
+<li>SSL/HTTPS: Cloudflare handles automatically  </li>
+<li>Email: Set up MX records separately if using hello@foodtruckgamers.com  </li>
+<li>Subdomains: Use them for different purposes  <ul>
+<li>foodtruckgamers.com - main site  </li>
+<li>blog.foodtruckgamers.com - blog  </li>
+<li>api.foodtruckgamers.com - API</li>
+</ul>
+</li>
+</ol>
+<p>Common mistakes</p>
+<ol>
+<li>Not picking a canonical version = Google indexes both = duplicate content = bad SEO  </li>
+<li>Forgetting to set up both DNS records = one version breaks  </li>
+<li>Using A records instead of CNAME = harder to update, miss Cloudflare benefits  </li>
+<li>Not testing both URLs = broken redirects for users</li>
+</ol>
+<p><strong>Backlink bonus:</strong> Notice how this entire post links to foodtruckgamers.com multiple times? That&#39;s a backlink in action - another site (this blog) linking to your domain. Google sees these as &quot;votes&quot; for your site&#39;s credibility.</p>
+
+  
+    <p><a href="index.html">Back to Blog</a></p>
+</body>
+</html>
+
