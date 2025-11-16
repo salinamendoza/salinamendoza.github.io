@@ -9,16 +9,15 @@
     <h1>Understanding Apex Domains (foodtruckgamers.com edition)</h1>
     <p><em>11/15/2025</em></p>
 
-
 <p>TLDR: Apex domain = your domain without &quot;www&quot; (foodtruckgamers.com). Pick ONE version (apex OR www) as your &quot;real&quot; URL and redirect the other. This avoids duplicate content issues in Google. Cloudflare makes setup easy with CNAME flattening + page rules.</p>
 <p>What is an apex domain?<br>Apex domain: foodtruckgamers.com<br>Subdomains: www.foodtruckgamers.com, blog.foodtruckgamers.com, <a href="http://api.foodtruckgamers.com">api.foodtruckgamers.com</a></p>
 <p>The apex = your domain without any prefix.</p>
 <p>The three setups (and why you should pick one)<br>Same DNS for all three:</p>
 <ul>
-<li>A | @ | [Lovable&#39;s IP address] | Proxied: Yes  </li>
-<li>A | www | [Lovable&#39;s IP address] | Proxied: Yes</li>
+<li>A | @ | [Lovable&#39;s IP address] | DNS only (gray cloud)  </li>
+<li>A | www | [Lovable&#39;s IP address] | Proxied or DNS only (either works)</li>
 </ul>
-<p>Note: Lovable gives you an IP address (A record), not a CNAME.<br>Check your Lovable dashboard for the exact IP to use.</p>
+<p>Note: Lovable gives you an IP address (A record), not a CNAME.<br>The apex (@) must be DNS only for Lovable to verify your domain.<br>Check your Lovable dashboard for the exact IP to use.</p>
 <p>The difference is what happens after:<br>Setup 1: Both work (no redirect) 🤨</p>
 <ul>
 <li>foodtruckgamers.com → works  </li>
@@ -63,15 +62,16 @@
 <li>Duplicate listings split your reviews across multiple profiles  </li>
 <li>Lower review count = lower trust = fewer customers  </li>
 <li>Fixing duplicate listings is a PAIN (Google support, verification, merging)  </li>
+<li></li>
 </ul>
 <p>Solution: Pick ONE canonical URL from the start. </p>
 <p>Setting up foodtruckgamers.com on Lovable</p>
 <ol>
 <li>Add domain to <a href="http://cloudflare.com">Cloudflare</a> → point nameservers  </li>
 <li>Add DNS records (get IP from Lovable dashboard):  <ul>
-<li>A | @ | [Lovable IP] | Proxied  </li>
-<li>A | www | [Lovable IP] | Proxied  </li>
-<li>Make sure BOTH are set to &quot;Proxied&quot; (orange cloud)  </li>
+<li>A | @ | [Lovable IP] | DNS only (gray cloud) ← IMPORTANT  </li>
+<li>A | www | [Lovable IP] | Proxied or DNS only  </li>
+<li>The apex MUST be DNS only for Lovable verification  </li>
 </ul>
 </li>
 <li>Choose redirect strategy:  <ul>
@@ -97,7 +97,7 @@
 <li>api.foodtruckgamers.com - API  </li>
 </ul>
 </li>
-<li><a href="http://lovable.dev">Lovable</a> uses A records: Unlike some hosts that give you CNAMEs, Lovable provides an IP address. Both work fine - A records just mean if Lovable changes IPs, you&#39;ll need to update manually.</li>
+<li><a href="http://lovable.dev">Lovable</a> requires DNS only: Unlike some hosts, Lovable needs the apex domain set to &quot;DNS only&quot; (gray cloud) not &quot;Proxied&quot; (orange cloud) for domain verification to work. The www subdomain can be either.</li>
 </ol>
 <p>Common mistakes</p>
 <ol>
