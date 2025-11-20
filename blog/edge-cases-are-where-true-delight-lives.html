@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edge cases are where true delight lives</title>
+    <meta name="description" content="One redundant SQL policy blocked anonymous users from scanning QR codes to register for an event">
+    <meta name="author" content="Salina Mendoza">
+</head>
+<body>
+    <h1>Edge cases are where true delight lives</h1>
+    <p><em>11/18/2025</em></p>
+
+
+
+<p>TLDR: Edge cases reveal system design flaws. A redundant database policy blocked anonymous QR code access at an event, teaching me that SQL literacy = debugging power in the AI era.</p>
+<p>Edge cases = where true delight lives </p>
+<p>SQL literacy = AI debugging superpowers and that means the more we know how to read it…the more agency we have in the next era of creating delightful experiences. </p>
+<p>Here’s an example of a real scenario in the events world in software that is basic enough to understand the power of simplicity:</p>
+<p>I am an event operator marketing my latest concert. We’re using QR-barcodes for marketing the event URL, registering/checking-in as an attendee, and scanning in attendees at the event. I download and print the QR codes for marketing purposes. I send mass emails to the waitlist &amp; my email list with the QR code. I then go to scan the code to test it…oh no…you have to login to get access? Blocked from registering? </p>
+<p>The problem? There was a redundant (or missing) policy when accessing the database. </p>
+<p><strong>Before:</strong><br>SELECT from events WHERE id = &#39;xyz&#39;<br>├─ Policy 1: &quot;Anyone can view events&quot; → true ✅<br>└─ Policy 2: &quot;Users can view own events&quot; → auth.uid() = user_id → NULL = uuid → ❌ FAIL</p>
+<p>Result: Query blocked</p>
+<p><strong>After:</strong><br>SELECT from events WHERE id = &#39;xyz&#39;<br>└─ Policy 1: &quot;Anyone can view events&quot; → true ✅</p>
+<p>Result: Query succeeds</p>
+<p>When there are issues that arise in software, it&#39;s easy to panic but oftentimes it&#39;s something small that can turn deadly if not found fast enough. </p>
+<p>The fix? Delete the redundant policy. Five minutes to find, one line to fix, hours of potential disaster avoided. Edge cases aren&#39;t bugs, they&#39;re where your users actually live. The fake event sold out. ;)</p>
+
+
+    <p><a href="index.html">Back to Blog</a></p>
+</body>
+</html>
+
