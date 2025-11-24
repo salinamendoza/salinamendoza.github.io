@@ -1,0 +1,61 @@
+name: Convert Images to WebP
+
+on:
+  push:
+    paths:
+      - '**.png'
+      - '**.jpg'
+      - '**.jpeg'
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install cwebp
+        run: sudo apt-get install -y webp
+
+      - name: Remove original images
+        run: |
+          git diff --name-only HEAD~1 HEAD | grep -E '\.(png|jpg|jpeg)$' | while read file; do
+            if [ -f "${file%.*}.webp" ]; then
+              rm "$file"
+              git rm "$file"
+            fi
+          done
+      
+      - name: Convert new images to WebP
+        run: |
+          git diff --name-only HEAD~1 HEAD | grep -E '\.(png|jpg|jpeg)$' | while read file; do
+            if [ -f "$file" ]; then
+              output="${file%.*}.webp"
+              cwebp -q 80 "$file" -o "$output"
+              echo "Converted: $file → $output"
+            fi
+          done
+      
+      - name: Commit WebP files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "*.webp"
+          git diff --staged --quiet || git commit -m "🖼️ Auto-convert images to WebP"
+          git push
+```
+
+**What this does:**
+
+1. Triggers when you push any `.png`, `.jpg`, or `.jpeg`
+2. Installs the `cwebp` converter
+3. Finds which images were added in that commit
+4. Converts them to WebP at 80% quality (good balance)
+5. Commits the `.webp` files back to the repo
+
+**Usage:**
+
+Just push your image. A few seconds later, the WebP version appears next to it.
+```
+/posts/my-post/
+  hero.png       ← you upload this
+  hero.webp      ← action creates this automatically
