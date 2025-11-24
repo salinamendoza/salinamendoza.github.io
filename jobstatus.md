@@ -1,0 +1,1 @@
+[![Convert Images to WebP](https://github.com/salinamendoza/salinamendoza.github.io/actions/workflows/convert-to-webp.yml/badge.svg)](https://github.com/salinamendoza/salinamendoza.github.io/actions/workflows/convert-to-webp.yml)
