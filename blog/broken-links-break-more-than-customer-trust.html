@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Broken links break more than customer trust</title>
+    <meta name="description" content="A routine domain migration exposed how one broken link can ripple through analytics, search rankings, and customer trust simultaneously.">
+    <meta name="author" content="Salina Mendoza">
+</head>
+<body>
+    <h1>Broken links break more than customer trust</h1>
+    <p><em>11/24/2025</em></p>
+
+
+
+<p>TLDR: Broken links break customer trust and scattered URL logic guarantees you&#39;ll ship broken links. Centralized URL utilities (one file, not five) let you change domains without disaster. This architectural choice is the difference between debugging production fires and confident deployments.</p>
+<p>Broken links break more than customer trust. </p>
+<p>Here is an example of a user experience with a new service:</p>
+<ol>
+<li>You sign up for a service  </li>
+<li>Onboarding goes well, everything looks good  </li>
+<li>You go to share a link → broken  </li>
+<li>Or you scan a QR code → 404 error  </li>
+<li>Or you click “Copy link” → link doesn’t work</li>
+</ol>
+<p>User = This product sucks</p>
+<p>Product Manager: Why are some links working for customers and others aren’t?</p>
+<p>Engineer: Oh no…I didn’t update that one file </p>
+<p><img src="./sst_urls_nov25.webp" alt="Single source of truth for URL generation" loading="lazy"></p>
+<p>There are two approaches: Scattered vs Centralized logic </p>
+<ol>
+<li>Scattered logic: Your codebase has URL generation in 5+ different files:</li>
+</ol>
+<p>File: RegistrationDialog.tsx<br>└─ Generates: window.location.origin + &#39;/event/&#39; + id</p>
+<p>File: Ticket.tsx<br>└─ Generates: window.location.origin + &#39;/ticket/&#39; + code</p>
+<p>File: Waitlist.tsx<br>└─ Generates: window.location.origin + &#39;/waitlist/&#39; + code</p>
+<p>File: EmailService.tsx<br>└─ Generates: window.location.origin + &#39;/event/&#39; + id</p>
+<p>File: QRCodeGenerator.tsx<br>└─ Generates: window.location.origin + &#39;/ticket/&#39; + code</p>
+<p><strong>Problem with this approach?</strong><br>When you need to change how URLs work (e.g. <a href="http://app.domain.com">app.domain.com</a> → <a href="http://domain.com">domain.com</a>)</p>
+<ol>
+<li>Remember all 5+ places URLs are generated  </li>
+<li>Update each file individually   </li>
+<li>Hope you don’t miss any   </li>
+<li>Deploy and pray </li>
+</ol>
+<p><strong>Results?</strong> Users see broken links, missed a few routes, spend hours debugging<br>✅Update registrationDialog.tsx → registration links work<br>✅Update ticket.tsx → ticket links work<br>❌Forgot to update emailService.tsx → email links broken<br>❌Forgot to update QRcodeGenerator.tsx → QR codes still point to old domain</p>
+<ol>
+<li>Centralized: You have ONE file that handles ALL URL generation:</li>
+</ol>
+<p>File: urls.ts<br>├─ getEventUrl(id) → Returns correct event URL<br>├─ getTicketUrl(code) → Returns correct ticket URL<br>└─ getWaitlistUrl(code) → Returns correct waitlist URL</p>
+<p>Then EVERY other file imports from this utility:</p>
+<p>File: RegistrationDialog.tsx<br>└─ import { getEventUrl } from &#39;@/utils/urls&#39;</p>
+<p>File: Ticket.tsx<br>└─ import { getTicketUrl } from &#39;@/utils/urls&#39;</p>
+<p>File: Waitlist.tsx<br>└─ import { getWaitlistUrl } from &#39;@/utils/urls&#39;</p>
+<p>File: EmailService.tsx<br>└─ import { getEventUrl } from &#39;@/utils/urls&#39;</p>
+<p>File: QRCodeGenerator.tsx<br>└─ import { getTicketUrl } from &#39;@/utils/urls&#39;</p>
+<p><strong>Why is this a better approach?</strong><br>When you need to change how URLs work (e.g. <a href="http://app.domain.com">app.domain.com</a> → <a href="http://domain.com">domain.com</a>)</p>
+<ol>
+<li>Update one file (<a href="http://urls.ts">urls.ts</a>)  </li>
+<li>Every part of the app automatically uses the new logic  </li>
+<li>Deploy with confidence</li>
+</ol>
+<p><strong>Results?</strong> All links work. Users happy. Deploy successful.</p>
+<p><strong>The question to ask your team next week:</strong> &quot;Where does our URL generation logic live? Is it centralized or scattered?&quot;</p>
+<p>If the answer is scattered across multiple files, you&#39;re carrying a hidden risk. If it&#39;s centralized, you&#39;ve built for scale.</p>
+
+   <p><a href="index.html">Back to Blog</a></p>
+</body>
+</html>
+
