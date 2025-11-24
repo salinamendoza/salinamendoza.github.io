@@ -27,7 +27,7 @@
 <img src="/images/sst_urls_nov25.webp" alt="Single source of truth for URL generation" loading="lazy" style="display: block; max-width: 800px; width: 100%; height: auto; margin: 1.5rem 0;">
 <p>There are two approaches: Scattered vs Centralized logic </p>
 <ol>
-<li>Scattered logic: Your codebase has URL generation in 5+ different files:</li>
+<p><strong>Scattered logic: Your codebase has URL generation in 5+ different files:</strong>strong></p>
 </ol>
 <p>File: RegistrationDialog.tsx<br>└─ Generates: window.location.origin + &#39;/event/&#39; + id</p>
 <p>File: Ticket.tsx<br>└─ Generates: window.location.origin + &#39;/ticket/&#39; + code</p>
@@ -43,7 +43,7 @@
 </ol>
 <p><strong>Results?</strong> Users see broken links, missed a few routes, spend hours debugging<br>✅Update registrationDialog.tsx → registration links work<br>✅Update ticket.tsx → ticket links work<br>❌Forgot to update emailService.tsx → email links broken<br>❌Forgot to update QRcodeGenerator.tsx → QR codes still point to old domain</p>
 <ol>
-<li>Centralized: You have ONE file that handles ALL URL generation:</li>
+<p><strong>Centralized: You have ONE file that handles ALL URL generation:</strong>strong></p>
 </ol>
 <p>File: urls.ts<br>├─ getEventUrl(id) → Returns correct event URL<br>├─ getTicketUrl(code) → Returns correct ticket URL<br>└─ getWaitlistUrl(code) → Returns correct waitlist URL</p>
 <p>Then EVERY other file imports from this utility:</p>
